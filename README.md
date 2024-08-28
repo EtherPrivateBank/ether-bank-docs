@@ -93,6 +93,54 @@ This endpoint retrieves the wallet balance for the authenticated user.
 - **URL:** `{{url}}/wallets/ebrl-balance/{{c_userId}}`
 - **Headers:** None required
 
+## Webhook: Handling Deposits
+
+When a user deposits money into their account, the API sends a webhook notification. Below is an example of the JSON payload that you can expect to receive:
+
+### Example Webhook Payload for a Deposit
+
+```json
+{
+  "event": {
+    "created": "2024-08-28T19:24:01.012648+00:00",
+    "id": "5356852523040768",
+    "log": {
+      "created": "2024-08-28T19:24:00.500812+00:00",
+      "deposit": {
+        "accountNumber": "6219417801195520",
+        "accountType": "payment",
+        "amount": 10005,
+        "bankCode": "20018183",
+        "branchCode": "0001",
+        "created": "2024-08-28T19:23:59.396307+00:00",
+        "displayDescription": "",
+        "fee": 0,
+        "id": "5160583015956480",
+        "name": "Mock Payment Institution Ltd",
+        "status": "created",
+        "tags": [
+          "e20018183202408281923xg35f29fxuz",
+          "dynamic-brcode/b61d1db4165e4ba290b3a04f6ca5e3f2",
+          "47544a724041488",
+          "db61d1db4165e4ba290b3a04f6ca5e3f2"
+        ],
+        "taxId": "12.345.678/0001-90",
+        "transactionIds": [
+          "30244242259666266132291935478651"
+        ],
+        "type": "pix",
+        "updated": "2024-08-28T19:24:00.500886+00:00"
+      },
+      "errors": [],
+      "id": "4953260347621376",
+      "type": "credited"
+    },
+    "subscription": "deposit",
+    "workspaceId": "6219417801195520"
+  }
+}
+```
+
 ## Authentication Details
 
 - Once authenticated, the `access_token` is automatically stored in the environment as `c_token`.
